@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity implements IMainView {
             // Set the drawer toggle as the DrawerListener
             mDrawerLayout.addDrawerListener(drawerToggle);
             mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+            assert mFab == null;
         }
 
 

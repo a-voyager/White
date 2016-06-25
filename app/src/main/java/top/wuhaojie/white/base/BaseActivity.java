@@ -21,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IAppView
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initViews(savedInstanceState);
+        initializeInjector();
         initPresenter();
     }
 

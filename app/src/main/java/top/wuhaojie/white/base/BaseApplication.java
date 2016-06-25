@@ -27,6 +27,7 @@ public class BaseApplication extends Application implements IConfigInjector {
         super.onCreate();
         // 初始化Fresco图片加载库
         Fresco.initialize(this);
+        initializeInjector();
     }
 
     @Override
