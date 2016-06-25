@@ -2,6 +2,7 @@ package top.wuhaojie.white;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
@@ -11,10 +12,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import butterknife.BindView;
-import top.wuhaojie.white.base.BaseActivity;
+import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity {
+import butterknife.BindView;
+import butterknife.OnClick;
+import top.wuhaojie.white.base.BaseActivity;
+import top.wuhaojie.white.base.BaseApplication;
+import top.wuhaojie.white.injector.componet.ActivityComponent;
+import top.wuhaojie.white.injector.componet.DaggerActivityComponent;
+import top.wuhaojie.white.injector.module.ActivityModule;
+import top.wuhaojie.white.presenter.impl.MainPresenter;
+import top.wuhaojie.white.utils.SnackBarUtils;
+import top.wuhaojie.white.view.IMainView;
+
+public class MainActivity extends BaseActivity implements IMainView {
 
 
     @BindView(R.id.iv_bg)
@@ -29,6 +40,20 @@ public class MainActivity extends BaseActivity {
     ListView mLeftDrawer;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    private ActivityComponent mActivityComponent;
+
+    @OnClick(R.id.fab)
+    void fabOnclick(View v) {
+        mMainPresenter.fabOnclick(v);
+    }
+
+    @Inject
+    MainPresenter mMainPresenter;
+
+    @Override
+    protected void initPresenter() {
+        mMainPresenter.attachView(this);
+    }
 
     @Override
     public int getLayoutResID() {
@@ -64,10 +89,21 @@ public class MainActivity extends BaseActivity {
             drawerToggle.syncState();
 
             // Set the drawer toggle as the DrawerListener
-            mDrawerLayout.setDrawerListener(drawerToggle);
+            mDrawerLayout.addDrawerListener(drawerToggle);
             mDrawerLayout.setScrimColor(Color.TRANSPARENT);
         }
     }
 
 
+    @Override
+    public void initializeInjector() {
+        BaseApplication application = (BaseApplication) getApplication();
+        mActivityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).appComponent(application.getAppComponent()).build();
+        mActivityComponent.inject(this);
+    }
+
+    @Override
+    public void showSnackBarMsg(@StringRes int msg) {
+        SnackBarUtils.show(this, msg);
+    }
 }

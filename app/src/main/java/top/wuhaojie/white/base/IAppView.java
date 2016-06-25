@@ -5,7 +5,7 @@ import android.os.Bundle;
 /**
  * Created by wuhaojie on 2016/6/22 21:04.
  */
-public interface AppView {
+public interface IAppView {
 
     int getLayoutResID();
 

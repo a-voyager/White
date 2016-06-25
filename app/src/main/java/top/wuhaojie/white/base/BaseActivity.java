@@ -7,11 +7,12 @@ import android.support.v7.widget.Toolbar;
 
 import butterknife.ButterKnife;
 import top.wuhaojie.white.R;
+import top.wuhaojie.white.injector.interfaces.IConfigInjector;
 
 /**
  * Created by wuhaojie on 2016/6/22 19:45.
  */
-public abstract class BaseActivity extends AppCompatActivity implements AppView {
+public abstract class BaseActivity extends AppCompatActivity implements IAppView, IConfigInjector {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,10 @@ public abstract class BaseActivity extends AppCompatActivity implements AppView 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initViews(savedInstanceState);
+        initPresenter();
     }
+
+    protected abstract void initPresenter();
 
     public abstract int getLayoutResID();
 
@@ -30,4 +34,5 @@ public abstract class BaseActivity extends AppCompatActivity implements AppView 
     protected void onDestroy() {
         super.onDestroy();
     }
+
 }

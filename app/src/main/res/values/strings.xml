@@ -5,4 +5,5 @@
     <string name="drawer_title">菜单</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="presenter_test_msg">此消息在Presenter中发出</string>
 </resources>
