@@ -32,6 +32,6 @@ dependencies {
     compile 'com.balysv:material-ripple:1.0.2'
     // use for dagger2
     compile 'com.google.dagger:dagger:2.5'
-    compile 'com.google.dagger:dagger-compiler:2.5'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
+    provided 'com.google.dagger:dagger-compiler:2.5'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 }

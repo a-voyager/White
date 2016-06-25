@@ -92,6 +92,8 @@ public class MainActivity extends BaseActivity implements IMainView {
             mDrawerLayout.addDrawerListener(drawerToggle);
             mDrawerLayout.setScrimColor(Color.TRANSPARENT);
         }
+
+
     }
 
 
