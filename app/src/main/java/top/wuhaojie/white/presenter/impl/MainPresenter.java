@@ -1,6 +1,7 @@
 package top.wuhaojie.white.presenter.impl;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,6 +11,7 @@ import top.wuhaojie.white.R;
 import top.wuhaojie.white.base.IAppView;
 import top.wuhaojie.white.injector.scope.ContextLifeCycle;
 import top.wuhaojie.white.presenter.IPresenter;
+import top.wuhaojie.white.service.MusicService;
 import top.wuhaojie.white.view.IMainView;
 
 /**
@@ -61,6 +63,9 @@ public class MainPresenter implements IPresenter {
     }
 
     public void fabOnclick(View v) {
+        Intent intent = new Intent(mContext, MusicService.class);
+        intent.setAction(MusicService.ACTION_PLAY);
         mIMainView.showSnackBarMsg(R.string.presenter_test_msg);
+        mContext.startService(intent);
     }
 }

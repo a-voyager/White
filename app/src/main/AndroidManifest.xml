@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="top.wuhaojie.white">
 
+    <!-- If your player application needs to keep the screen from dimming or the processor from sleeping, -->
+    <!-- or uses the MediaPlayer.setScreenOnWhilePlaying() or MediaPlayer.setWakeMode() methods, -->
+    <!-- you must request this permission. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -19,6 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.MusicService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
