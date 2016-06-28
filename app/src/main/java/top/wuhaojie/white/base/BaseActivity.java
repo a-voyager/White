@@ -23,7 +23,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IAppView
         initViews(savedInstanceState);
         initializeInjector();
         initPresenter();
+        onCreateForPresenter(savedInstanceState);
     }
+
+    protected abstract void onCreateForPresenter(Bundle savedInstanceState);
 
     protected abstract void initPresenter();
 

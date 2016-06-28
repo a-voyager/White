@@ -2,6 +2,7 @@ package top.wuhaojie.white.utils;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.PowerManager;
 import android.support.annotation.RawRes;
 
 import java.util.ArrayList;
@@ -30,7 +31,11 @@ public class MediaPlayerBuilder {
     }
 
     public MediaPlayerBuilder addItem(@RawRes int resId) {
-        mMediaPlayers.add(new MediaPlayerWrapper(MediaPlayer.create(mContext, resId), resId));
+        MediaPlayer mediaPlayer = MediaPlayer.create(mContext, resId);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.setWakeMode(mContext, PowerManager.PARTIAL_WAKE_LOCK);
+        mediaPlayer.setOnPreparedListener((mp) -> mp.start());
+        mMediaPlayers.add(new MediaPlayerWrapper(mediaPlayer, resId));
         return this;
     }
 

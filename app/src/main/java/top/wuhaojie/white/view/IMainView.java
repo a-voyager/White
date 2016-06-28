@@ -9,4 +9,8 @@ import top.wuhaojie.white.base.IAppView;
  */
 public interface IMainView extends IAppView {
     void showSnackBarMsg(@StringRes int msg);
+
+    void switch2PauseState();
+
+    void switch2PlayState();
 }

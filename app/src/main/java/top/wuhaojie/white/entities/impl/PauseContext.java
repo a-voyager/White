@@ -13,8 +13,9 @@ public class PauseContext implements IMediaPlayerState {
     public void currAction(List<MediaPlayerWrapper> list) {
         if (list == null || list.size() <= 0) throw new IllegalArgumentException("传入参数为空");
         for (MediaPlayerWrapper mediaPlayerWrapper : list) {
-            if (mediaPlayerWrapper != null && mediaPlayerWrapper.mMediaPlayer != null)
+            if (mediaPlayerWrapper != null && mediaPlayerWrapper.mMediaPlayer != null && mediaPlayerWrapper.mMediaPlayer.isPlaying()) {
                 mediaPlayerWrapper.mMediaPlayer.pause();
+            }
         }
     }
 }

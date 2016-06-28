@@ -2,19 +2,27 @@ package top.wuhaojie.white.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
-import android.os.PowerManager;
+import android.util.Log;
 
 import java.util.List;
 
 import top.wuhaojie.white.R;
 import top.wuhaojie.white.constant.Constant;
+import top.wuhaojie.white.entities.IMediaPlayerState;
 import top.wuhaojie.white.entities.MediaPlayerWrapper;
+import top.wuhaojie.white.entities.impl.PlayContext;
 import top.wuhaojie.white.utils.MediaPlayerBuilder;
 
 public class MusicService extends Service {
 
     public static final String ACTION_PLAY = Constant.MUSIC_START_ACTION;
+
+    private IMediaPlayerState mMediaPlayerState;
+
+    private MusicBinder mMusicBinder = new MusicBinder();
+    private List<MediaPlayerWrapper> mMediaPlayers;
 
     public MusicService() {
     }
@@ -22,8 +30,7 @@ public class MusicService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return mMusicBinder;
     }
 
     @Override
@@ -34,34 +41,55 @@ public class MusicService extends Service {
 
     private void initMediaPlayer() {
 
-        List<MediaPlayerWrapper> mediaPlayers = new MediaPlayerBuilder(this)
+        mMediaPlayers = new MediaPlayerBuilder(this)
                 .addItem(R.raw.rain)
                 .addItem(R.raw.thunder)
                 .addItem(R.raw.birds)
                 .build();
 
-        for (MediaPlayerWrapper mediaPlayerWrapper : mediaPlayers) {
-            mediaPlayerWrapper.mMediaPlayer.setLooping(true);
-            mediaPlayerWrapper.mMediaPlayer.setWakeMode(this, PowerManager.PARTIAL_WAKE_LOCK);
-            mediaPlayerWrapper.mMediaPlayer.setOnPreparedListener((mp) -> mp.start());
-        }
-
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && intent.getAction().equals(ACTION_PLAY)) {
-
-        }
-
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
+        for (MediaPlayerWrapper m : mMediaPlayers) {
+            if (m != null && m.mMediaPlayer.isPlaying()) {
+                m.mMediaPlayer.release();
+            }
+        }
         super.onDestroy();
-//        if (mMediaPlayer != null && mMediaPlayer.isPlaying())
-//            mMediaPlayer.release();
-//        mMediaPlayer = null;
     }
+
+    public class MusicBinder extends Binder {
+        public IMediaPlayerState getMediaPlayerState() {
+            return mMediaPlayerState;
+        }
+
+        public void setState(IMediaPlayerState state) {
+            mMediaPlayerState = state;
+            invalidate();
+        }
+
+        public boolean isPlaying() {
+            return mMediaPlayerState instanceof PlayContext;
+        }
+
+        public void pause() {
+            for (MediaPlayerWrapper mediaPlayerWrapper : mMediaPlayers) {
+                mediaPlayerWrapper.mMediaPlayer.stop();
+                Log.d(getClass().getSimpleName(), "暂停" + mediaPlayerWrapper.mMediaPlayer.toString());
+            }
+        }
+
+    }
+
+
+    private void invalidate() {
+        mMediaPlayerState.currAction(mMediaPlayers);
+    }
+
 }

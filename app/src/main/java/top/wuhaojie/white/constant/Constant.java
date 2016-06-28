@@ -5,4 +5,5 @@ package top.wuhaojie.white.constant;
  */
 public interface Constant {
     String MUSIC_START_ACTION = "top.wuhaojie.action.START";
+    String MUSIC_SERVICE_CLASS_NAME = "top.wuhaojie.white.service.MusicService";
 }

@@ -47,8 +47,14 @@ public class MainActivity extends BaseActivity implements IMainView {
         mMainPresenter.fabOnclick(v);
     }
 
+
     @Inject
     MainPresenter mMainPresenter;
+
+    @Override
+    protected void onCreateForPresenter(Bundle savedInstanceState) {
+        mMainPresenter.onCreate(savedInstanceState);
+    }
 
     @Override
     protected void initPresenter() {
@@ -98,6 +104,37 @@ public class MainActivity extends BaseActivity implements IMainView {
 
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        mMainPresenter.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mMainPresenter.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mMainPresenter.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mMainPresenter.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMainPresenter.onDestroy();
+    }
+
+
+    @Override
     public void initializeInjector() {
         BaseApplication application = (BaseApplication) getApplication();
         mActivityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).appComponent(application.getAppComponent()).build();
@@ -107,5 +144,15 @@ public class MainActivity extends BaseActivity implements IMainView {
     @Override
     public void showSnackBarMsg(@StringRes int msg) {
         SnackBarUtils.show(this, msg);
+    }
+
+    @Override
+    public void switch2PauseState() {
+        mFab.setImageResource(R.drawable.play);
+    }
+
+    @Override
+    public void switch2PlayState() {
+        mFab.setImageResource(R.drawable.pause);
     }
 }
