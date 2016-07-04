@@ -11,6 +11,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -92,8 +94,20 @@ public class MainActivity extends BaseActivity implements IMainView {
 
         initDrawer();
 
+        initLeftDrawerList();
+
         initRecyclerView();
 
+    }
+
+    private void initLeftDrawerList() {
+        mLeftDrawer.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, new String[]{"关  于"}));
+        mLeftDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mMainPresenter.onItemClick(parent, view, position, id);
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -198,5 +212,10 @@ public class MainActivity extends BaseActivity implements IMainView {
     @Override
     public void addLevel(SwitchView view) {
         view.addLevel();
+    }
+
+    @Override
+    public void closeDrawer() {
+        mDrawerLayout.closeDrawers();
     }
 }

@@ -7,10 +7,12 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
+import android.widget.AdapterView;
 
 import javax.inject.Inject;
 
 import top.wuhaojie.white.R;
+import top.wuhaojie.white.activities.AboutActivity;
 import top.wuhaojie.white.base.IAppView;
 import top.wuhaojie.white.constant.Constant;
 import top.wuhaojie.white.entities.impl.PauseContext;
@@ -63,6 +65,8 @@ public class MainPresenter implements IPresenter {
 
     private void bindMusicService() {
         if (ServiceUtils.isServiceRun(mContext, Constant.MUSIC_SERVICE_CLASS_NAME)) {
+            // 绑定说明正在播放
+            mIMainView.switch2PlayState();
             Intent intent = new Intent(mContext, MusicService.class);
             mContext.bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
         }
@@ -129,5 +133,15 @@ public class MainPresenter implements IPresenter {
         }
         mIMainView.addLevel(view);
         mMusicBinder.updateLevel(tag, true);
+    }
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                mIMainView.closeDrawer();
+                Intent intent = new Intent(mContext, AboutActivity.class);
+                mContext.startActivity(intent);
+                break;
+        }
     }
 }

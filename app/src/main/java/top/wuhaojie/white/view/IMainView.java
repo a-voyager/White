@@ -15,4 +15,6 @@ public interface IMainView extends IAppView {
     void switch2PlayState();
 
     void addLevel(SwitchView view);
+
+    void closeDrawer();
 }
