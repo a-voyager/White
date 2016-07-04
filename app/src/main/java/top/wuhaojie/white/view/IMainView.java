@@ -13,4 +13,6 @@ public interface IMainView extends IAppView {
     void switch2PauseState();
 
     void switch2PlayState();
+
+    void addLevel(SwitchView view);
 }

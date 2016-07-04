@@ -31,6 +31,7 @@ import top.wuhaojie.white.presenter.impl.MainPresenter;
 import top.wuhaojie.white.utils.MusicItemFactory;
 import top.wuhaojie.white.utils.SnackBarUtils;
 import top.wuhaojie.white.view.IMainView;
+import top.wuhaojie.white.view.SwitchView;
 
 public class MainActivity extends BaseActivity implements IMainView {
 
@@ -60,6 +61,7 @@ public class MainActivity extends BaseActivity implements IMainView {
 
 
     private ActivityComponent mActivityComponent;
+    private CardsAdapter mAdapter;
 
     @OnClick(R.id.fab)
     void fabOnclick(View v) {
@@ -97,9 +99,13 @@ public class MainActivity extends BaseActivity implements IMainView {
     private void initRecyclerView() {
         mRvMain.setLayoutManager(new GridLayoutManager(this, 3));
         List<MusicItemImpl> iMusicItems = MusicItemFactory.getInstance().getIMusicItems();
-        CardsAdapter adapter = new CardsAdapter(this, iMusicItems);
-        mRvMain.setAdapter(adapter);
-
+        mAdapter = new CardsAdapter(this, iMusicItems, new CardsAdapter.OnCardClickListener() {
+            @Override
+            public void onClick(String tag, SwitchView view) {
+                mMainPresenter.onClick(tag, view);
+            }
+        });
+        mRvMain.setAdapter(mAdapter);
     }
 
     private void initDrawer() {
@@ -189,4 +195,8 @@ public class MainActivity extends BaseActivity implements IMainView {
         mFab.setImageResource(R.drawable.pause);
     }
 
+    @Override
+    public void addLevel(SwitchView view) {
+        view.addLevel();
+    }
 }

@@ -24,10 +24,17 @@ public class CardsAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private final LayoutInflater mInflater;
 
-    public CardsAdapter(Context context, List<? extends IMusicItem> items) {
+    public interface OnCardClickListener {
+        void onClick(String tag, SwitchView view);
+    }
+
+    private OnCardClickListener mOnCardClickListener;
+
+    public CardsAdapter(Context context, List<? extends IMusicItem> items, OnCardClickListener listener) {
         mItems = items;
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
+        mOnCardClickListener = listener;
     }
 
     @Override
@@ -61,6 +68,7 @@ public class CardsAdapter extends RecyclerView.Adapter {
             mTitleView = (TextView) itemView.findViewById(R.id.tv_title);
             mIconView = (ImageView) itemView.findViewById(R.id.iv_icon_card);
             mSwitchView = (SwitchView) itemView.findViewById(R.id.switch_view_card);
+            itemView.setOnClickListener((view) -> mOnCardClickListener.onClick(mItems.get(getAdapterPosition()).getTag(), mSwitchView));
         }
     }
 

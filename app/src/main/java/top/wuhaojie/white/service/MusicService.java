@@ -94,6 +94,10 @@ public class MusicService extends Service {
             }
         }
 
+        public void updateLevel(String tag, boolean addVol) {
+            updateVolLevel(tag, addVol);
+        }
+
     }
 
 

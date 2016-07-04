@@ -10,6 +10,7 @@ import android.view.View;
 
 import javax.inject.Inject;
 
+import top.wuhaojie.white.R;
 import top.wuhaojie.white.base.IAppView;
 import top.wuhaojie.white.constant.Constant;
 import top.wuhaojie.white.entities.impl.PauseContext;
@@ -19,6 +20,7 @@ import top.wuhaojie.white.presenter.IPresenter;
 import top.wuhaojie.white.service.MusicService;
 import top.wuhaojie.white.utils.ServiceUtils;
 import top.wuhaojie.white.view.IMainView;
+import top.wuhaojie.white.view.SwitchView;
 
 /**
  * Created by wuhaojie on 2016/6/25 12:03.
@@ -120,4 +122,12 @@ public class MainPresenter implements IPresenter {
     }
 
 
+    public void onClick(String tag, SwitchView view) {
+        if (!ServiceUtils.isServiceRun(mContext, Constant.MUSIC_SERVICE_CLASS_NAME) || mMusicBinder == null) {
+            mIMainView.showSnackBarMsg(R.string.please_play);
+            return;
+        }
+        mIMainView.addLevel(view);
+        mMusicBinder.updateLevel(tag, true);
+    }
 }
