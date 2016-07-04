@@ -8,4 +8,6 @@
     <string name="presenter_test_msg">此消息在Presenter中发出</string>
     <string name="start_playing">开始播放</string>
     <string name="card_title_rain">雨声</string>
+    <string name="card_title_thunder">雷鸣</string>
+    <string name="card_title_birds">鸟语</string>
 </resources>

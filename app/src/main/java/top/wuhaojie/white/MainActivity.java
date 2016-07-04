@@ -96,9 +96,8 @@ public class MainActivity extends BaseActivity implements IMainView {
 
     private void initRecyclerView() {
         mRvMain.setLayoutManager(new GridLayoutManager(this, 3));
-        MusicItemFactory factory = new MusicItemFactory();
-        List<MusicItemImpl> musicItems = factory.createMusicItems(MusicItemImpl.class, R.raw.rain, R.raw.thunder, R.raw.birds, R.raw.rain);
-        CardsAdapter adapter = new CardsAdapter(this, musicItems);
+        List<MusicItemImpl> iMusicItems = MusicItemFactory.getInstance().getIMusicItems();
+        CardsAdapter adapter = new CardsAdapter(this, iMusicItems);
         mRvMain.setAdapter(adapter);
 
     }

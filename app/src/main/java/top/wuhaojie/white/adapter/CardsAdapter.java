@@ -12,6 +12,7 @@ import java.util.List;
 
 import top.wuhaojie.white.R;
 import top.wuhaojie.white.entities.IMusicItem;
+import top.wuhaojie.white.entities.impl.MusicItemImpl;
 import top.wuhaojie.white.view.SwitchView;
 
 /**
@@ -38,7 +39,10 @@ public class CardsAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         CardViewHolder cardViewHolder = (CardViewHolder) holder;
-//        cardViewHolder.mTitle
+        MusicItemImpl item = (MusicItemImpl) mItems.get(position);
+        cardViewHolder.mTitleView.setText(item.getTitle());
+        cardViewHolder.mIconView.setImageResource(item.getIconResId());
+        cardViewHolder.mSwitchView.setLevel(item.getLevel());
     }
 
     @Override

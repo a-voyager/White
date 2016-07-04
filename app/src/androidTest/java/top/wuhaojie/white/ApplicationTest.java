@@ -17,8 +17,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     }
 
     public void testMusicFactory() {
-        MusicItemFactory factory = new MusicItemFactory();
-        List<MusicItemImpl> musicItems = factory.createMusicItems(MusicItemImpl.class, R.raw.rain, R.raw.thunder);
+        List<MusicItemImpl> musicItems = MusicItemFactory.getInstance().createMusicItems(MusicItemImpl.class, R.raw.rain, R.raw.thunder);
         System.out.println(musicItems.get(1).getResId());
     }
 
