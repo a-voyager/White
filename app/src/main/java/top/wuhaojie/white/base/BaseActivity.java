@@ -16,6 +16,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IAppView
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.activity_down_up_anim, R.anim.activity_up_down_anim);
         setContentView(getLayoutResID());
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

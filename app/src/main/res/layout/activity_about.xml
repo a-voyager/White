@@ -47,6 +47,7 @@
         android:textColor="#33ffffff"/>
 
     <Button
+        android:id="@+id/open_network"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
