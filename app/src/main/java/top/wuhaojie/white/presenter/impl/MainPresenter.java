@@ -10,7 +10,6 @@ import android.view.View;
 
 import javax.inject.Inject;
 
-import top.wuhaojie.white.R;
 import top.wuhaojie.white.base.IAppView;
 import top.wuhaojie.white.constant.Constant;
 import top.wuhaojie.white.entities.impl.PauseContext;
@@ -99,7 +98,7 @@ public class MainPresenter implements IPresenter {
         if (!ServiceUtils.isServiceRun(mContext, Constant.MUSIC_SERVICE_CLASS_NAME)) {
             Intent intent = new Intent(mContext, MusicService.class);
             intent.setAction(MusicService.ACTION_PLAY);
-            mIMainView.showSnackBarMsg(R.string.start_playing);
+//            mIMainView.showSnackBarMsg(R.string.start_playing);
             mContext.startService(intent);
             bindMusicService();
             need2SwitchState = true;
