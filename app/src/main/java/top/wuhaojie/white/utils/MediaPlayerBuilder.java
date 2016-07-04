@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import top.wuhaojie.white.entities.MediaPlayerWrapper;
-import top.wuhaojie.white.entities.MusicItem;
+import top.wuhaojie.white.entities.IMusicItem;
 
 /**
  * 建造者模式
@@ -25,7 +25,7 @@ public class MediaPlayerBuilder {
         mMediaPlayers = new ArrayList<>();
     }
 
-    public MediaPlayerBuilder addItem(MusicItem item) {
+    public MediaPlayerBuilder addItem(IMusicItem item) {
         mMediaPlayers.add(new MediaPlayerWrapper(MediaPlayer.create(mContext, item.getResId()), item));
         return this;
     }

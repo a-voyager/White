@@ -10,21 +10,21 @@ import top.wuhaojie.white.entities.impl.MusicItemImpl;
  */
 public class MediaPlayerWrapper {
     public final MediaPlayer mMediaPlayer;
-    public final MusicItem mMusicItem;
+    public final IMusicItem mIMusicItem;
 
 
-    public MediaPlayerWrapper(MediaPlayer mediaPlayer, MusicItem musicItem) {
+    public MediaPlayerWrapper(MediaPlayer mediaPlayer, IMusicItem IMusicItem) {
         mMediaPlayer = mediaPlayer;
-        mMusicItem = musicItem;
+        mIMusicItem = IMusicItem;
     }
 
     public MediaPlayerWrapper(MediaPlayer mediaPlayer, int resId) {
         mMediaPlayer = mediaPlayer;
-        mMusicItem = new MusicItemImpl(resId);
+        mIMusicItem = new MusicItemImpl(resId);
     }
 
     public MediaPlayerWrapper(MediaPlayer mediaPlayer, String tag) {
         mMediaPlayer = mediaPlayer;
-        mMusicItem = new MusicItemImpl(tag);
+        mIMusicItem = new MusicItemImpl(tag);
     }
 }
