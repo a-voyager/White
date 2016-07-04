@@ -24,6 +24,7 @@ import top.wuhaojie.white.injector.module.ActivityModule;
 import top.wuhaojie.white.presenter.impl.MainPresenter;
 import top.wuhaojie.white.utils.SnackBarUtils;
 import top.wuhaojie.white.view.IMainView;
+import top.wuhaojie.white.view.SwitchView;
 
 public class MainActivity extends BaseActivity implements IMainView {
 
@@ -40,6 +41,16 @@ public class MainActivity extends BaseActivity implements IMainView {
     ListView mLeftDrawer;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+
+    @BindView(R.id.switch_view_card)
+    SwitchView switchViewCard;
+
+    @OnClick(R.id.card_item)
+    void onClick() {
+        switchViewCard.addLevel();
+    }
+
+
     private ActivityComponent mActivityComponent;
 
     @OnClick(R.id.fab)
