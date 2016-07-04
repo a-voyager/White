@@ -52,6 +52,7 @@ public class MusicItemImpl implements IMusicItem {
         return mResId;
     }
 
+    @Override
     public String getTag() {
         return mTag;
     }

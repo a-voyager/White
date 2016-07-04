@@ -26,7 +26,11 @@ public class MediaPlayerBuilder {
     }
 
     public MediaPlayerBuilder addItem(IMusicItem item) {
-        mMediaPlayers.add(new MediaPlayerWrapper(MediaPlayer.create(mContext, item.getResId()), item));
+        MediaPlayer mediaPlayer = MediaPlayer.create(mContext, item.getResId());
+        mediaPlayer.setLooping(true);
+        mediaPlayer.setWakeMode(mContext, PowerManager.PARTIAL_WAKE_LOCK);
+        mediaPlayer.setOnPreparedListener((mp) -> mp.start());
+        mMediaPlayers.add(new MediaPlayerWrapper(mediaPlayer, item));
         return this;
     }
 

@@ -5,4 +5,6 @@ package top.wuhaojie.white.entities;
  */
 public interface IMusicItem {
     int getResId();
+
+    String getTag();
 }
