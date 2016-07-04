@@ -10,7 +10,13 @@
     tools:context="top.wuhaojie.white.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <include layout="@layout/card_rain"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"/>
 
 
 </android.support.v4.widget.NestedScrollView>

@@ -7,24 +7,30 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import top.wuhaojie.white.adapter.CardsAdapter;
 import top.wuhaojie.white.base.BaseActivity;
 import top.wuhaojie.white.base.BaseApplication;
+import top.wuhaojie.white.entities.impl.MusicItemImpl;
 import top.wuhaojie.white.injector.componet.ActivityComponent;
 import top.wuhaojie.white.injector.componet.DaggerActivityComponent;
 import top.wuhaojie.white.injector.module.ActivityModule;
 import top.wuhaojie.white.presenter.impl.MainPresenter;
+import top.wuhaojie.white.utils.MusicItemFactory;
 import top.wuhaojie.white.utils.SnackBarUtils;
 import top.wuhaojie.white.view.IMainView;
-import top.wuhaojie.white.view.SwitchView;
 
 public class MainActivity extends BaseActivity implements IMainView {
 
@@ -41,14 +47,16 @@ public class MainActivity extends BaseActivity implements IMainView {
     ListView mLeftDrawer;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    @BindView(R.id.rv_main)
+    RecyclerView mRvMain;
 
-    @BindView(R.id.switch_view_card)
-    SwitchView switchViewCard;
-
-    @OnClick(R.id.card_item)
-    void onClick() {
-        switchViewCard.addLevel();
-    }
+//    @BindView(R.id.switch_view_card)
+//    SwitchView switchViewCard;
+//
+//    @OnClick(R.id.card_item)
+//    void onClick() {
+//        switchViewCard.addLevel();
+//    }
 
 
     private ActivityComponent mActivityComponent;
@@ -79,6 +87,23 @@ public class MainActivity extends BaseActivity implements IMainView {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
+
+        initDrawer();
+
+        initRecyclerView();
+
+    }
+
+    private void initRecyclerView() {
+        mRvMain.setLayoutManager(new GridLayoutManager(this, 3));
+        MusicItemFactory factory = new MusicItemFactory();
+        List<MusicItemImpl> musicItems = factory.createMusicItems(MusicItemImpl.class, R.raw.rain, R.raw.thunder, R.raw.birds, R.raw.rain);
+        CardsAdapter adapter = new CardsAdapter(this, musicItems);
+        mRvMain.setAdapter(adapter);
+
+    }
+
+    private void initDrawer() {
         if (getSupportActionBar() != null) {
 
 
@@ -109,8 +134,6 @@ public class MainActivity extends BaseActivity implements IMainView {
             mDrawerLayout.addDrawerListener(drawerToggle);
             mDrawerLayout.setScrimColor(Color.TRANSPARENT);
         }
-
-
     }
 
 
@@ -166,4 +189,5 @@ public class MainActivity extends BaseActivity implements IMainView {
     public void switch2PlayState() {
         mFab.setImageResource(R.drawable.pause);
     }
+
 }
