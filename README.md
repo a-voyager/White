@@ -15,13 +15,8 @@
 本项目采用MVP设计模式，实现了较为清晰的架构，运用当今火热的各大框架，全局使用Material Design，必是值得一看的开源项目之一！
 
 # 效果图
+
 # ![image](https://github.com/a-voyager/White/raw/master/screenshots/img (2).png "效果图")
-
-# ![image](https://github.com/a-voyager/White/raw/master/screenshots/img (1).png "效果图")
-
-# ![image](https://github.com/a-voyager/White/raw/master/screenshots/img (4).png "效果图")
-
-# ![image](https://github.com/a-voyager/White/raw/master/screenshots/img (3).png "效果图")
 
 
 
