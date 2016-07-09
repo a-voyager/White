@@ -1,5 +1,17 @@
 # 白噪声
 ![image](https://github.com/a-voyager/White/raw/master/screenshots/icon_512_512.png "效果图")
+
+# 应用介绍
+ 你夜晚睡不着吗？是不是想在旅途补个觉？是不是注意力不够集中？
+ 你需要这款“白噪声”软件:
+ * 屏蔽干扰，提高注意力
+ * 舒缓压力，缓解情绪
+ * 舒缓头痛，掩蔽耳鸣
+ * 精神放松，睡眠香甜
+ * 雨、雷、风、森林合集，HIFI级音效
+ * 界面简洁美观，Material Design风格
+ * 软件开源，无广告
+
 本项目采用MVP设计模式，实现了较为清晰的架构，运用当今火热的各大框架，全局使用Material Design，必是值得一看的开源项目之一！
 
 # 效果图
@@ -11,16 +23,7 @@
 
 # ![image](https://github.com/a-voyager/White/raw/master/screenshots/img (3).png "效果图")
 
-# 应用介绍
-你夜晚睡不着吗？是不是想在旅途补个觉？是不是注意力不够集中？
-你需要这款“白噪声”软件:
- * 屏蔽干扰，提高注意力
- * 舒缓压力，缓解情绪
- * 舒缓头痛，掩蔽耳鸣
- * 精神放松，睡眠香甜
- * 雨、雷、风、森林合集，HIFI级音效
- * 界面简洁美观，Material Design风格
- * 软件开源，无广告
+
 
 # 开源框架使用情况
 
@@ -31,7 +34,7 @@
 | Fresco        | 图像加载      |
 |Material-Ripple| 水波纹特效    |
 
-感谢以上开源框架的存在
+感谢以上开源框架的存在, 才有了此软件
 
 # License
     The MIT License (MIT)
