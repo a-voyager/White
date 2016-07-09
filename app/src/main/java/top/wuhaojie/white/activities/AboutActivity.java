@@ -3,6 +3,7 @@ package top.wuhaojie.white.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import butterknife.BindView;
@@ -33,7 +34,9 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -50,5 +53,13 @@ public class AboutActivity extends BaseActivity {
         Intent it = new Intent(Intent.ACTION_VIEW, uri);
 
         startActivity(it);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
