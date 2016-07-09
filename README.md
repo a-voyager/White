@@ -31,6 +31,8 @@
 
 感谢以上开源框架的存在, 才有了此软件
 
+> 最后，来了别忘记给个Star支持一下哦！
+
 # License
     The MIT License (MIT)
 
